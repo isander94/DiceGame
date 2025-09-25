@@ -9,7 +9,7 @@ class TestPlayerClass(unittest.TestCase):
 
     def setUp(self):
         """Create a player instance used in the tests below"""
-        self.testPlayer = Player("Bob")
+        self.testPlayer = Player("Bob", 1, 6)
 
     def test_instance(self):
         """Test what class the object is instansiated from"""
@@ -19,7 +19,7 @@ class TestPlayerClass(unittest.TestCase):
         """Test to check that the instance of the Player class have their attributes assigned"""
         self.assertIsNotNone(self.testPlayer.name) # The name should not be empty when the instance is created
         self.assertIsNotNone(self.testPlayer.score) # The score should not be empty when the instance is created
-        # Add dice when the class is ready
+        self.assertIsNotNone(self.testPlayer.dice) # The associated dice object should be initialized
 
     def test_getScore(self):
         """Returns the score of the player instance"""
@@ -75,6 +75,12 @@ class TestPlayerClass(unittest.TestCase):
         """Try to change the name to an empty string"""
         self.assertFalse(self.testPlayer.change_name("")) # Should return false as we're trying to set an empty name
         self.assertEqual(self.testPlayer.get_name(), "Bob") # Check that the name is still Bob and not an empty name
+
+    def test_rollDice(self):
+        """Test rolling the die and check what it returns"""
+        roll = self.testPlayer.roll_dice() # Roll the die
+        is_within_range = roll >= 1 and roll <= 6 # Create a boolean variable checking the range
+        self.assertTrue(is_within_range) # The dice attribute was instansiated with parameters 1 and 6 - It should pass
 
 
 if __name__ == "__main__":
