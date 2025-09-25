@@ -13,17 +13,34 @@ class TestDiceClass(unittest.TestCase):
         self.my_dice2 = Dice(1, 12)
         self.my_dice3 = Dice(6, 18)
 
-    def test_roll_dice(self):
+    def test_instance(self):
+        """Test what class the object is instansiated from."""
+        self.assertIsInstance(self.my_dice1, Dice)
+        self.assertIsInstance(self.my_dice2, Dice)
+        self.assertIsInstance(self.my_dice3, Dice)
+
+    def test_attributes(self):
+        """Check that instance of class Dice have attributes assigned."""
+        self.assertIsNotNone(self.my_dice1.low)
+        self.assertIsNotNone(self.my_dice1.high)
+
+        self.assertIsNotNone(self.my_dice2.low)
+        self.assertIsNotNone(self.my_dice2.high)
+
+        self.assertIsNotNone(self.my_dice3.low)
+        self.assertIsNotNone(self.my_dice3.high)
+
+    def test_roll(self):
         """Checks if die lands on number between high and low on roll."""
-        roll_1 = self.my_dice1.roll_dice()
+        roll_1 = self.my_dice1.roll()
         expected1 = roll_1 >= 1 and roll_1 <= 6
         self.assertTrue(expected1)
 
-        roll_2 = self.my_dice2.roll_dice()
+        roll_2 = self.my_dice2.roll()
         expected2 = roll_2 >= 1 and roll_2 <= 12
         self.assertTrue(expected2)
 
-        roll_3 = self.my_dice3.roll_dice()
+        roll_3 = self.my_dice3.roll()
         expected3 = roll_3 >= 6 and roll_3 <= 18
         self.assertTrue(expected3)
 
