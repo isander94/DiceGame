@@ -32,12 +32,15 @@ Create a venv by typing:
 Then you can activate it in different way depending if you're on Windows or Mac/Linux
 
 Windows:
+
     . .venv/Scripts/activate
 
 Mac/Linux:
+
     . .venv/bin/activate
 
 ## Install packages
 
 To install required packages from the project into your venv type this:
+
     pip install -r requirements.txt
