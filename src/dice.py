@@ -11,7 +11,7 @@ class Dice:
         self.low = low
         self.high = high
 
-    def roll_dice(self):
+    def roll(self):
         """Roll the dice, returning a number between low and high."""
         random_num = random.randint(self.low, self.high)
         return random_num
