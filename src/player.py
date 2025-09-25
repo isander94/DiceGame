@@ -35,4 +35,4 @@ class Player:
     
     def roll_dice(self):
         """Rolls the die associated with the player instance"""
-        return self.dice.roll_dice()
+        return self.dice.roll()
