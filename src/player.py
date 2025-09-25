@@ -3,11 +3,11 @@ from dice import Dice
 
 
 class Player:
-    def __init__(self, name):
+    def __init__(self, name, low, high):
         """Initialize a player object with a name as parameter"""
         self.name = name
         self.score = 0
-        self.dice = Dice(1, 6)
+        self.dice = Dice(low, high)
 
     def get_score(self):
         """Return the score of the player instance"""
