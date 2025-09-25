@@ -24,6 +24,7 @@ class GameLoop(cmd.Cmd):
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|")
 
     def do_play(self, arg):
+        """Start the game."""
         pass
 
     def do_highscore(self, arg):
@@ -46,6 +47,10 @@ class GameLoop(cmd.Cmd):
               This goes on until someone reaches 100 points first
 
               Good luck!""")
+
+    def do_quit(self, line):
+        """Quit the program."""
+        return True
 
 
 if __name__ == '__main__':
