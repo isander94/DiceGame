@@ -1,7 +1,7 @@
 """Unit testing for dice class."""
 import unittest
 
-from dice import Dice
+from src.dice import Dice
 
 
 class TestDiceClass(unittest.TestCase):

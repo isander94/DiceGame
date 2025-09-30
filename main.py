@@ -1,13 +1,14 @@
 """Main class for handling gameloop."""
 
 import cmd
+from game import Game
 
 
 class GameLoop(cmd.Cmd):
     """Main Gameloop."""
 
     intro = "|¤¤¤¤| Pig Dice Game |¤¤¤¤|\nType 'help' to show commands."
-    prompt = "-->) "
+    prompt = "--> "
 
     def do_menu(self, arg):
         """Show game menu."""
@@ -25,7 +26,9 @@ class GameLoop(cmd.Cmd):
 
     def do_play(self, arg):
         """Start the game."""
-        pass
+        game = Game()
+        game.player_versus_player()
+        self.do_menu(arg)
 
     def do_highscore(self, arg):
         """Show highscore of previous played games."""
