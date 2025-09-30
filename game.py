@@ -79,6 +79,7 @@ class Game:
             # Show commands
             
     def check_if_won(self, player):
+        """A simple function that checks if a player has won the game"""
         if player.get_score() >= 100:
             print(f"{player.get_name()} wins the game with a score of {player.get_score()}!")
             print(f"Game over!")
@@ -86,6 +87,7 @@ class Game:
             return True
         
     def cheat(self, player):
+        """A small function that adds 100 points to the player, thus ending the game with a victory"""
         player.add_score(100)
 
     def show_commands(self):
