@@ -1,6 +1,7 @@
 """Class for handling all game modes"""
 
 from src.player import Player
+from src.highscore import Highscore
 
 class Game:
     def __init__(self):
@@ -26,15 +27,15 @@ class Game:
 
         # Enter a loop that alternates the control between player 1 and player 2
         while self.game_is_active:
-            if self.game_is_active:            
-                self.player_choice(player1)
-                if self.check_if_won(player1):
-                    self.game_is_active = False
+            # Perform one or multiple moves            
+            self.player_choice(player1)
+            # Check if the player has won after one or multiple moves
+            if self.check_if_won(player1) or not self.game_is_active:
+                break
             
-            if self.game_is_active:
-                self.player_choice(player2)
-                if self.check_if_won(player2):
-                    self.game_is_active = False
+            self.player_choice(player2)
+            if self.check_if_won(player2) or not self.game_is_active:
+                break
 
     def player_choice(self, player):
         """Reads the player input and executes the corresponding command"""
@@ -63,7 +64,7 @@ class Game:
                     print(f"{player.get_name()} now has {player.get_score() + round_score} points!")
 
             # Hold
-            if player_input.lower() == "hold":
+            elif player_input.lower() == "hold":
                 # Add the round score to the player object - These points are now kept
                 player.add_score(round_score)
                 print(f"{player.get_name()} has secured {player.get_score()} points!")
@@ -71,12 +72,25 @@ class Game:
                 round_is_active = False
                 
             # Quit
+            elif player_input.lower() == "quit":
+                self.game_is_active = False
+                round_is_active = False
+                
             # Cheat
-            if player_input.lower() == "cheat":
+            elif player_input.lower() == "cheat":
                 self.cheat(player)
                 round_is_active = False
+                
             # Change name
+            elif player_input.lower() == "changename":
+                old_name = player.get_name()
+                new_name = input("Enter a new name --> ")
+                player.change_name(new_name)
+                print(f"{old_name} has changed his/her name to {player.get_name()}")
+                
             # Show commands
+            elif player_input.lower() == "commands":
+                self.show_commands()
             
     def check_if_won(self, player):
         """A simple function that checks if a player has won the game"""
@@ -84,6 +98,8 @@ class Game:
             print(f"{player.get_name()} wins the game with a score of {player.get_score()}!")
             print(f"Game over!")
             # Add the player and score to the highscore list here
+            highscore = Highscore()
+            highscore.add_score(player.get_name(), player.get_score())
             return True
         
     def cheat(self, player):
