@@ -1,5 +1,5 @@
 """Player class that represents a participant in the game"""
-from src.dice import Dice
+from dice import Dice
 
 
 class Player:
