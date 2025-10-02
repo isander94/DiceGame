@@ -44,3 +44,13 @@ Mac/Linux:
 To install required packages from the project into your venv type this:
 
     pip install -r requirements.txt
+
+## Run tests and get coverage report
+
+To run the unittests type this:
+
+    coverage run -m unittest discover src
+
+After you have run the tests you can get the coverage report by typing:
+
+    coverage report -m
