@@ -1,38 +1,40 @@
-"""Player class that represents a participant in the game"""
+"""Player class that represents a participant in the game."""
 from dice import Dice
 
 
 class Player:
+    """Class for player."""
+
     def __init__(self, name, low, high):
-        """Initialize a player object with a name as parameter"""
+        """Initialize a player object with a name as parameter."""
         self.name = name
         self.score = 0
         self.dice = Dice(low, high)
 
     def get_score(self):
-        """Return the score of the player instance"""
+        """Return the score of the player instance."""
         return self.score
-    
+
     def add_score(self, score):
-        """Add a score the player instance with score as a parameter"""
+        """Add a score the player instance with score as a parameter."""
         if score < 0:
             return False
-        
+
         self.score += score
         return True
 
     def get_name(self):
-        """Return the name of the player instance"""
+        """Return the name of the player instance."""
         return self.name
-    
+
     def change_name(self, new_name):
-        """Change the name of the player instance with new_name as a parameter"""
+        """Change the name of the player with new_name as a parameter."""
         if new_name == "":
             return False
-        
+
         self.name = new_name
         return True
-    
+
     def roll_dice(self):
-        """Rolls the die associated with the player instance"""
+        """Roll the die associated with the player instance."""
         return self.dice.roll()
