@@ -11,10 +11,10 @@ class TestHighscoreClass(unittest.TestCase):
         """Create a temporary test file."""
         self.test_file = "test_highscore.txt"
         try:
-            with open(self.test_file, "r+"):
+            with open(self.test_file, "r+", encoding="utf-8"):
                 pass
                 # Check if file exists, if it does continue
-            with open(self.test_file, "w") as f:
+            with open(self.test_file, "w", encoding="utf-8") as f:
                 f.write("")  # Empties the file
         except FileNotFoundError:
             pass
@@ -23,9 +23,9 @@ class TestHighscoreClass(unittest.TestCase):
     def tearDown(self):
         """Remove test file after tests are done."""
         try:
-            with open(self.test_file, "r+"):
+            with open(self.test_file, "r+", encoding="utf-8"):
                 pass
-            with open(self.test_file, "w") as f:
+            with open(self.test_file, "w", encoding="utf-8") as f:
                 f.write("")
         except FileNotFoundError:
             pass
@@ -64,7 +64,7 @@ class TestHighscoreClass(unittest.TestCase):
     def test_file_format(self):
         """Test if file has 'player,points' format."""
         self.test_highscore.add_score("Eric", 20)
-        with open(self.test_file, "r") as f:
+        with open(self.test_file, "r", encoding="utf-8") as f:
             content = f.read().strip()
         self.assertEqual(content, "Eric,20")
 
