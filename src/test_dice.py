@@ -33,15 +33,15 @@ class TestDiceClass(unittest.TestCase):
     def test_roll(self):
         """Checks if die lands on number between high and low on roll."""
         roll_1 = self.my_dice1.roll()
-        expected1 = roll_1 >= 1 and roll_1 <= 6
+        expected1 = 1 <= roll_1 <= 6
         self.assertTrue(expected1)
 
         roll_2 = self.my_dice2.roll()
-        expected2 = roll_2 >= 1 and roll_2 <= 12
+        expected2 = 1 <= roll_2 <= 12
         self.assertTrue(expected2)
 
         roll_3 = self.my_dice3.roll()
-        expected3 = roll_3 >= 6 and roll_3 <= 18
+        expected3 = 6 <= roll_3 <= 18
         self.assertTrue(expected3)
 
     def test_low_number(self):
