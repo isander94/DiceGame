@@ -36,14 +36,14 @@ class Highscore:
 
     def save_scores(self):
         """Save the highscore."""
-        with open(self.filename, "w") as f:
+        with open(self.filename, "w", encoding="utf-8") as f:
             for player, score in self.highscores.items():
                 f.write(f"{player},{score}\n")
 
     def load_scores(self):
         """Load previous highscores."""
         try:
-            with open(self.filename, "r") as f:
+            with open(self.filename, "r", encoding="utf-8") as f:
                 for line in f:
                     player, score = line.strip().split(",")
                     self.highscores[player] = int(score)
