@@ -2,6 +2,7 @@
 
 import cmd
 from game import Game
+from highscore import Highscore
 
 
 class GameLoop(cmd.Cmd):
@@ -32,7 +33,9 @@ class GameLoop(cmd.Cmd):
 
     def do_highscore(self, arg):
         """Show highscore of previous played games."""
-        pass
+        highscore = Highscore()
+        highscore.print_highscores()
+        self.do_menu(arg)
 
     def do_rules(self, arg):
         """Display the rules of the game."""
