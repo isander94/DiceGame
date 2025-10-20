@@ -7,10 +7,10 @@ class Game:
     def __init__(self):
         """Initialize a game instance"""
         self.game_is_active = True
-
+        self.round_score = 0
+        
     def player_versus_player(self, players):
         """Method handling the game mode for two human players"""
-        self.round_score = 0
         self.round_is_active = True
         self.show_commands()
         
@@ -47,15 +47,18 @@ class Game:
         # Roll dice
         if choice.lower() == "roll":
             self.execute_roll(player)
+            return True
                 
         # Handle hold
         elif choice.lower() == "hold":
             player.add_score(self.round_score)
             self.round_is_active = False
+            return True
             
         # Quit game session
         elif choice.lower() == "quit":
             self.game_is_active = False
+            return True
             
         # Perform a cheat
         elif choice.lower() == "cheat":
@@ -66,10 +69,12 @@ class Game:
         elif choice.lower() == "changename":
             new_name = input("Enter new name: ")
             player.change_name(new_name)
+            return True
             
         # Show game commands
         elif choice.lower() == "commands":
             self.show_commands()
+            return True
             
     def execute_roll(self, player):
         """Rolls the player dice. If 1, the points are lost. If not, the points are added to the round"""
