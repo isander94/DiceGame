@@ -12,7 +12,7 @@ class Highscore:
 
     def add_score(self, player, score):
         """Add or update a players score."""
-        if player not in self.highscores or score > self.highscores[player]:
+        if player not in self.highscores or score >= self.highscores[player]:
             self.highscores[player] = score
             self.save_scores()
         else:
