@@ -2,6 +2,7 @@
 
 import cmd
 from game import Game
+from player import Player
 from highscore import Highscore
 
 
@@ -28,7 +29,16 @@ class GameLoop(cmd.Cmd):
     def do_play(self, arg):
         """Start the game."""
         game = Game()
-        game.player_versus_player()
+        print("Player versus Player mode started!")
+        low = 1
+        high = 6
+        players = []
+        
+        for x in range (2):
+            name = input(f"Enter name for player {x + 1}: ")
+            players.append(Player(name, low, high))    
+            
+        game.player_versus_player(players)
         self.do_menu(arg)
 
     def do_highscore(self, arg):
