@@ -1,4 +1,4 @@
-"""Highscore file."""
+"""File that handles all highscores."""
 
 
 class Highscore:
@@ -7,11 +7,12 @@ class Highscore:
     def __init__(self, filename="highscore.txt"):
         """Highscore init."""
         self.filename = filename
-        self.highscores = {}
-        self.load_scores()
+        self.highscores = {}  # Create Dictionary
+        self.load_scores()  # Loads previous scores
 
     def add_score(self, player, score):
         """Add or update a players score."""
+        # Check if player is already in list, and if so, replace with new score
         if player not in self.highscores or score >= self.highscores[player]:
             self.highscores[player] = score
             self.save_scores()
@@ -41,10 +42,12 @@ class Highscore:
                 f.write(f"{player},{score}\n")
 
     def load_scores(self):
-        """Load previous highscores."""
+        """Load previous highscores and puts them in the new dictionary."""
         try:
+            # Reads from txt file
             with open(self.filename, "r", encoding="utf-8") as f:
                 for line in f:
+                    # Strips from txt file and puts into dictionary
                     player, score = line.strip().split(",")
                     self.highscores[player] = int(score)
         except FileNotFoundError:
