@@ -32,16 +32,13 @@ class TestGameClass(unittest.TestCase):
         self.assertFalse(has_won) # Should still return False as the score is still below 100
         
     def test_checkIfWon(self):
-        """Add 100 points to the player and check if the player has one. Should return True"""
+        """Add 100 points to the player and check if the player has won. Should return True"""
         self.player.add_score(100)
         has_won = self.game.check_if_won(self.player)
         self.assertTrue(has_won) # Should return True as the score is now atleast 100 points
         self.player.add_score(25) # Add another 25 points
         has_won = self.game.check_if_won(self.player)
-        self.assertTrue(has_won) # Should still return True as the score is still atleast 100 points
-        
-        
-    
+        self.assertTrue(has_won) # Should still return True as the score is still atleast 100 points    
         
 if __name__ == "__main__":
     unittest.main()
