@@ -66,6 +66,39 @@ class TestDiceClass(unittest.TestCase):
         expected_high3 = 18
         self.assertEqual(expected_high3, self.my_dice3.high)
 
+    def test_same_low_and_high_returns_constant(self):
+        """If low == high, roll() should always return that number."""
+        dice = Dice(5, 5)
+        for i in range(10):
+            self.assertEqual(dice.roll(), 5)
+
+    def test_attribute_types(self):
+        """Ensure attributes are integers."""
+        self.assertIsInstance(self.my_dice1.low, int)
+        self.assertIsInstance(self.my_dice1.high, int)
+
+    def test_invalid_range_raises_error(self):
+        """Test that invalid range raises ValueError."""
+        with self.assertRaises(ValueError):
+            Dice(10, 1)
+
+    def test_non_integer_values_raise_error(self):
+        """Test that Dice does not accept float or string values."""
+        with self.assertRaises(TypeError):
+            Dice(1.5, 6)
+        with self.assertRaises(TypeError):
+            Dice(1, 6.2)
+        with self.assertRaises(TypeError):
+            Dice("1", 6)
+        with self.assertRaises(TypeError):
+            Dice(1, "6")
+
+    def test_multiple_rolls_are_independent(self):
+        """Ensure multiple rolls return values within bounds each time."""
+        for i in range(100):
+            roll = self.my_dice1.roll()
+            self.assertTrue(1 <= roll <= 6)
+
 
 if __name__ == "__main__":
     unittest.main()

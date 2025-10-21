@@ -8,6 +8,14 @@ class Dice:
 
     def __init__(self, low, high):
         """Initialize with low and high number."""
+        # Makes sure dice low and high can only be Integer
+        if not isinstance(low, int) or not isinstance(high, int):
+            raise TypeError("Low and high values must be integers.")
+
+        # Makes sure a dice cant have low > high
+        if low > high:
+            raise ValueError("Low cannot be greater than high.")
+
         self.low = low
         self.high = high
 
