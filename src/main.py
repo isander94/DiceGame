@@ -17,7 +17,9 @@ class GameLoop(cmd.Cmd):
         print("\n" +
             "{    Option     }{    Command    }\n" +
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-            "|   $ Play $    ||     play      |\n" +
+            "|$ Singleplayer$||     pvc       |\n" +
+            "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
+            "|$ Multiplayer $||     pvp       |\n" +
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
             "| £ Highscore £ ||   highscore   |\n" +
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
@@ -26,8 +28,23 @@ class GameLoop(cmd.Cmd):
             "|  :( Quit ):   ||     quit      |\n" +
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|")
 
-    def do_play(self, arg):
-        """Start the game."""
+    def do_pvc(self, arg):
+        """Start the game playing against the computer"""
+        game = Game()
+        print("Player vs Computer mode started!")
+        low = 1
+        high = 6
+        players = []
+        
+        name = input(f"Enter name: ")
+        players.append(Player(name, low, high))
+        players.append(Player("CPU", low, high))
+        
+        game.player_versus_computer(players)
+        self.do_menu(arg)
+
+    def do_pvp(self, arg):
+        """Start the game with two players."""
         game = Game()
         print("Player versus Player mode started!")
         low = 1
