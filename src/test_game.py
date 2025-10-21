@@ -85,17 +85,15 @@ class TestGameClass(unittest.TestCase):
         """Test the player_vs_player function and attempt to finish a round"""
         self.assertTrue(True, self.game.player_versus_player(self.players))
         
+    @patch("builtins.input", side_effect = ["cheat"]) # An input is needed for the test
+    def test_finishGamePVPCheat(self, fake_input):
+        """Test the player_vs_player function and attempt to finish a round with cheat"""
+        self.assertTrue(True, self.game.player_versus_player(self.players))
+        
     @patch("builtins.input", side_effect = ["hold", "cheat"]) # An input is needed for the test
     def test_finishGamePVC(self, fake_input):
         """Test the player_vs_player function and attempt to finish a round"""
         self.assertTrue(True, self.game.player_versus_computer(self.players))
-        
-    
-    
-    
-    
-        
-        
         
 if __name__ == "__main__":
     unittest.main()
