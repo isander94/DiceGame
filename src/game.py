@@ -43,7 +43,6 @@ class Game:
 
     def player_versus_computer(self, players):
         """Method handling the game mode for player versus the computer"""
-        """Method handling the game mode for two human players"""
         self.round_is_active = True
         self.show_commands()
         
