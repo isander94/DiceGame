@@ -34,11 +34,32 @@ class GameLoop(cmd.Cmd):
         print("Player vs Computer mode started!")
         low = 1
         high = 6
+        cpu_high = 0
         players = []
         
+        # Enter name and add to player list
         name = input(f"Enter name: ")
         players.append(Player(name, low, high))
-        players.append(Player("CPU", low, high))
+        
+        # Enter difficulty and add computer player to player list
+        difficulty = int(input("Choose difficulty\n" +
+                      "1) Normal\n" +
+                      "2) Medium\n" +
+                      "3) Hard\n" +
+                      "4) Very hard!\n" +
+                      "---> "
+                      ))
+        
+        if difficulty == 1:
+            cpu_high = 6
+        elif difficulty == 2:
+            cpu_high = 12
+        elif difficulty == 3:
+            cpu_high = 24
+        elif difficulty == 4:
+            cpu_high = 48
+        
+        players.append(Player("CPU", low, cpu_high))
         
         game.player_versus_computer(players)
         self.do_menu(arg)
