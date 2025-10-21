@@ -23,7 +23,9 @@ class TestGameClass(unittest.TestCase):
     def test_attributes_value(self):
         """Test that the initial attributes of the Game object have the correct values"""
         self.assertEqual(self.game.game_is_active, True)
+        self.assertNotEqual(self.game.game_is_active, False)
         self.assertEqual(self.game.round_score, 0)
+        self.assertNotEqual(self.game.round_score, 50)
         
     def test_instance(self):
         """Test what class the object is instansiated from"""
@@ -78,10 +80,18 @@ class TestGameClass(unittest.TestCase):
         """Test the player_choice function with the input of commands"""
         self.assertTrue(self.game.player_choice(self.player1, "commands"))
     
-    @patch("builtins.input", side_effect = ["cheat"]) # An input is needed for the test
-    def test_finishGame(self, fake_input):
-        """Test the player_vs_player function and attempt to finish a round of the game by cheating"""
+    @patch("builtins.input", side_effect = ["hold", "cheat"]) # An input is needed for the test
+    def test_finishGamePVP(self, fake_input):
+        """Test the player_vs_player function and attempt to finish a round"""
         self.assertTrue(True, self.game.player_versus_player(self.players))
+        
+    @patch("builtins.input", side_effect = ["hold", "cheat"]) # An input is needed for the test
+    def test_finishGamePVC(self, fake_input):
+        """Test the player_vs_player function and attempt to finish a round"""
+        self.assertTrue(True, self.game.player_versus_computer(self.players))
+        
+    
+    
     
     
         
