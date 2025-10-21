@@ -17,6 +17,7 @@ class Game:
         
         # Main game loop, continues until there is a winner or someone quits       
         while self.game_is_active:
+            self.round_score = 0
             self.round_is_active = True
             # Alternate between the players
             if self.game_is_active:
@@ -48,6 +49,7 @@ class Game:
         
         # Main game loop, continues until there is a winner or someone quits       
         while self.game_is_active:
+            self.round_score = 0
             self.round_is_active = True
             # Alternate between the players
             if self.game_is_active:
@@ -84,6 +86,7 @@ class Game:
                 
         # Handle hold
         elif choice.lower() == "hold":
+            print(f"{player.get_name()} holds!")
             player.add_score(self.round_score)
             self.round_is_active = False
             return True
@@ -125,11 +128,9 @@ class Game:
             self.round_score += roll
             print(f"{player.get_name()} now has {player.get_score() + self.round_score} points!")
         
-    
     def check_if_won(self, player):
         """A simple function that checks if a player has won the game"""
         if player.get_score() >= 100:
-            player.add_score(self.round_score)
             print(f"{player.get_name()} wins the game with a score of {player.get_score()}!")
             print(f"Game over!")
             # Add the player and score to the highscore list here
@@ -152,3 +153,4 @@ class Game:
                 "|   cheat  |\n" +
                 "|changename|\n" +
                 " ---------- ")
+        
