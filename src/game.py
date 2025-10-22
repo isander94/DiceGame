@@ -1,18 +1,19 @@
-"""Class for handling all game modes"""
+"""Class for handling all game modes."""
 
-from player import Player
 from highscore import Highscore
 import random
 
 
 class Game:
+    """Class handling the two game modes and their corresponding logic."""
+
     def __init__(self):
-        """Initialize a game instance"""
+        """Initialize a game instance."""
         self.game_is_active = True
         self.round_score = 0
 
     def player_versus_player(self, players):
-        """Method handling the game mode for two human players"""
+        """Handle the game mode for two human players."""
         self.round_is_active = True
         self.show_commands()
 
@@ -44,7 +45,7 @@ class Game:
         return True
 
     def player_versus_computer(self, players):
-        """Method handling the game mode for player versus the computer"""
+        """Handle the game mode for player versus the computer."""
         self.round_is_active = True
         self.show_commands()
 
@@ -78,8 +79,7 @@ class Game:
         return True
 
     def player_choice(self, player, choice):
-        """Take a player object and a command and executes the corresponding game move"""
-
+        """Execute the corresponding command depending on player input."""
         # Roll dice
         if choice.lower() == "roll":
             self.execute_roll(player)
@@ -114,7 +114,7 @@ class Game:
             return True
 
     def execute_roll(self, player):
-        """Rolls the player dice. If 1, the points are lost. If not, the points are added to the round"""
+        """Roll the player dice."""
         roll = player.roll_dice()
         print(f"{player.get_name()} rolls {roll}!")
 
@@ -124,20 +124,22 @@ class Game:
             self.round_score = 0
             self.round_is_active = False
 
-        # If the player rolls above 1, the points are added to this rounds score
+        # If the player rolls over 1, the points are added to this rounds score
         else:
             self.round_score += roll
             print(
-                f"{player.get_name()} now has {player.get_score() + self.round_score} points!"
+                f"{player.get_name()} now has "
+                f"{player.get_score() + self.round_score} points!"
             )
 
     def check_if_won(self, player):
-        """A simple function that checks if a player has won the game"""
+        """Check if a player has won the game."""
         if player.get_score() >= 100:
             print(
-                f"{player.get_name()} wins the game with a score of {player.get_score()}!"
+                f"{player.get_name()} wins the game "
+                f"with a score of {player.get_score()}!"
             )
-            print(f"Game over!")
+            print("Game over!")
             # Add the player and score to the highscore list here
             highscore = Highscore()
             highscore.add_score(player.get_name(), player.get_score())
@@ -145,11 +147,11 @@ class Game:
         return False
 
     def cheat(self, player):
-        """A small function that adds 100 points to the player, thus ending the game with a victory"""
+        """Add 100 points to the player, ending the game with a victory."""
         player.add_score(100)
 
     def show_commands(self):
-        """Shows availible commands for the game"""
+        """Show the availible commands for the game."""
         print(
             "  Commands \n"
             + " ---------- \n"
