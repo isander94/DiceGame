@@ -9,12 +9,7 @@ from highscore import Highscore
 class GameLoop(cmd.Cmd):
     """Main Gameloop."""
 
-    intro = "|¤¤¤¤| Pig Dice Game |¤¤¤¤|\nType 'help' to show commands."
-    prompt = "--> "
-
-    def do_menu(self, arg):
-        """Show game menu."""
-        print("\n" +
+    intro = ("|¤¤¤¤| Pig Dice Game |¤¤¤¤|\nType 'help' to show commands.\n" +
             "{    Option     }{    Command    }\n" +
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
             "|$ Singleplayer$||     pvc       |\n" +
@@ -27,6 +22,11 @@ class GameLoop(cmd.Cmd):
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
             "|  :( Quit ):   ||     quit      |\n" +
             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|")
+    prompt = "--> "
+
+    def do_menu(self, arg):
+        """Show game menu."""
+        print(self.intro)
 
     def do_pvc(self, arg):
         """Start the game playing against the computer"""
@@ -42,25 +42,42 @@ class GameLoop(cmd.Cmd):
         players.append(Player(name, low, high))
         
         # Enter difficulty and add computer player to player list
-        difficulty = int(input("Choose difficulty\n" +
-                      "1) Normal\n" +
-                      "2) Medium\n" +
-                      "3) Hard\n" +
-                      "4) Very hard!\n" +
-                      "---> "
-                      ))
+        valid_input = False
         
-        if difficulty == 1:
-            cpu_high = 6
-        elif difficulty == 2:
-            cpu_high = 12
-        elif difficulty == 3:
-            cpu_high = 24
-        elif difficulty == 4:
-            cpu_high = 48
+        # Keep asking for a valid input until correct
+        while valid_input == False:
+            try:
         
+                difficulty = int(input("Choose difficulty\n" +
+                            "1) Normal\n" +
+                            "2) Medium\n" +
+                            "3) Hard\n" +
+                            "4) Very hard!\n" +
+                            "---> "
+                            ))
+                
+                if difficulty == 1:
+                    cpu_high = 6
+                    valid_input = True
+                elif difficulty == 2:
+                    cpu_high = 12
+                    valid_input = True
+                elif difficulty == 3:
+                    cpu_high = 24
+                    valid_input = True
+                elif difficulty == 4:
+                    cpu_high = 48
+                    valid_input = True
+            
+            # Should the user enter an invalid input, raise an error        
+            except ValueError:
+                print("Invalid choice - Try again!")
+            
+        
+        # Add computer player to the player list
         players.append(Player("CPU", low, cpu_high))
         
+        # Launch game
         game.player_versus_computer(players)
         self.do_menu(arg)
 
@@ -75,7 +92,8 @@ class GameLoop(cmd.Cmd):
         for x in range (2):
             name = input(f"Enter name for player {x + 1}: ")
             players.append(Player(name, low, high))    
-            
+        
+        # Launch game
         game.player_versus_player(players)
         self.do_menu(arg)
 
