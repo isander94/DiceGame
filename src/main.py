@@ -1,5 +1,5 @@
 """Main class for handling gameloop."""
-
+# pylint: disable=unused-argument
 import cmd
 from game import Game
 from player import Player
