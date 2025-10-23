@@ -9,19 +9,20 @@ from highscore import Highscore
 class GameLoop(cmd.Cmd):
     """Main Gameloop."""
 
-    intro = ("|¤¤¤¤| Pig Dice Game |¤¤¤¤|\nType 'help' to show commands.\n" +
-            "{    Option     }{    Command    }\n" +
-            "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-            "|$ Singleplayer$||     pvc       |\n" +
-            "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-            "|$ Multiplayer $||     pvp       |\n" +
-            "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-            "| £ Highscore £ ||   highscore   |\n" +
-            "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-            "|   € Rules €   ||     rules     |\n" +
-            "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-            "|  :( Quit ):   ||     quit      |\n" +
-            "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|")
+    intro = ("|¤¤¤¤| Pig Dice Game |¤¤¤¤|\n" +
+             "{    Option     }{    Command    }\n" +
+             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
+             "|$ Singleplayer$||     pvc       |\n" +
+             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
+             "|$ Multiplayer $||     pvp       |\n" +
+             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
+             "| £ Highscore £ ||   highscore   |\n" +
+             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
+             "|   € Rules €   ||     rules     |\n" +
+             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
+             "|  :( Quit ):   ||     quit      |\n" +
+             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
+             "Type 'help' to show commands.\n")
     prompt = "--> "
 
     def do_menu(self, arg):
@@ -29,33 +30,32 @@ class GameLoop(cmd.Cmd):
         print(self.intro)
 
     def do_pvc(self, arg):
-        """Start the game playing against the computer"""
+        """Start the game playing against the computer."""
         game = Game()
         print("Player vs Computer mode started!")
         low = 1
         high = 6
         cpu_high = 0
         players = []
-        
+
         # Enter name and add to player list
-        name = input(f"Enter name: ")
+        name = input("Enter name: ")
         players.append(Player(name, low, high))
-        
+
         # Enter difficulty and add computer player to player list
         valid_input = False
-        
+
         # Keep asking for a valid input until correct
-        while valid_input == False:
+        while valid_input is False:
             try:
-        
+
                 difficulty = int(input("Choose difficulty\n" +
-                            "1) Normal\n" +
-                            "2) Medium\n" +
-                            "3) Hard\n" +
-                            "4) Very hard!\n" +
-                            "---> "
-                            ))
-                
+                                       "1) Normal\n" +
+                                       "2) Medium\n" +
+                                       "3) Hard\n" +
+                                       "4) Very hard!\n" +
+                                       "---> "))
+
                 if difficulty == 1:
                     cpu_high = 6
                     valid_input = True
@@ -68,15 +68,14 @@ class GameLoop(cmd.Cmd):
                 elif difficulty == 4:
                     cpu_high = 48
                     valid_input = True
-            
-            # Should the user enter an invalid input, raise an error        
+
+            # Should the user enter an invalid input, raise an error
             except ValueError:
                 print("Invalid choice - Try again!")
-            
-        
+
         # Add computer player to the player list
         players.append(Player("CPU", low, cpu_high))
-        
+
         # Launch game
         game.player_versus_computer(players)
         self.do_menu(arg)
@@ -88,11 +87,11 @@ class GameLoop(cmd.Cmd):
         low = 1
         high = 6
         players = []
-        
-        for x in range (2):
+
+        for x in range(2):
             name = input(f"Enter name for player {x + 1}: ")
-            players.append(Player(name, low, high))    
-        
+            players.append(Player(name, low, high))
+
         # Launch game
         game.player_versus_player(players)
         self.do_menu(arg)
