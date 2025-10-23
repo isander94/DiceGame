@@ -1,7 +1,8 @@
 """Class for handling all game modes."""
-
-from highscore import Highscore
+# pylint: disable=attribute-defined-outside-init
+# pylint: disable=too-many-return-statements
 import random
+from highscore import Highscore
 
 
 class Game:
@@ -86,32 +87,34 @@ class Game:
             return True
 
         # Handle hold
-        elif choice.lower() == "hold":
+        if choice.lower() == "hold":
             print(f"{player.get_name()} holds!")
             player.add_score(self.round_score)
             self.round_is_active = False
             return True
 
         # Quit game session
-        elif choice.lower() == "quit":
+        if choice.lower() == "quit":
             self.game_is_active = False
             return True
 
         # Perform a cheat
-        elif choice.lower() == "cheat":
+        if choice.lower() == "cheat":
             self.cheat(player)
             return True
 
         # Change name of the player
-        elif choice.lower() == "changename":
+        if choice.lower() == "changename":
             new_name = input("Enter new name: ")
             player.change_name(new_name)
             return True
 
         # Show game commands
-        elif choice.lower() == "commands":
+        if choice.lower() == "commands":
             self.show_commands()
             return True
+
+        return True
 
     def execute_roll(self, player):
         """Roll the player dice."""
