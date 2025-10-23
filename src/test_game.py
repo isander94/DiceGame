@@ -1,5 +1,5 @@
 """Test class for the Game class."""
-
+# pylint: disable=unused-argument
 import unittest
 from unittest.mock import patch
 from game import Game
@@ -40,7 +40,7 @@ class TestGameClass(unittest.TestCase):
         # The score should only be equal to 100
         self.assertNotEqual(self.player1.get_score(), 50)
 
-    def test_checkIfNotWon(self):
+    def test_check_if_not_won(self):
         """Check that if players has below 100 points doesn't win."""
         self.player1.add_score(15)
         has_won = self.game.check_if_won(self.player1)
@@ -51,7 +51,7 @@ class TestGameClass(unittest.TestCase):
         # Should still return False as the score is still below 100
         self.assertFalse(has_won)
 
-    def test_checkIfWon(self):
+    def test_check_if_won(self):
         """Check that if player has 100 points they win."""
         self.player1.add_score(100)
         has_won = self.game.check_if_won(self.player1)
@@ -63,49 +63,49 @@ class TestGameClass(unittest.TestCase):
         # Should still return True as the score is still atleast 100 points
         self.assertTrue(has_won)
 
-    def test_playerChoiceRoll(self):
+    def test_player_choice_roll(self):
         """Test the player_choice function with the input of roll."""
         self.assertTrue(self.game.player_choice(self.player1, "roll"))
 
-    def test_playerChoiceHold(self):
+    def test_player_choice_hold(self):
         """Test the player_choice function with the input of hold."""
         self.assertTrue(self.game.player_choice(self.player1, "hold"))
 
-    def test_playerChoiceQuit(self):
+    def test_player_choice_quit(self):
         """Test the player_choice function with the input of quit."""
         self.assertTrue(self.game.player_choice(self.player1, "quit"))
 
-    def test_playerChoiceCheat(self):
+    def test_player_choice_cheat(self):
         """Test the player_choice function with the input of cheat."""
         self.assertTrue(self.game.player_choice(self.player1, "cheat"))
 
     # An input is needed for the test
     @patch("builtins.input", side_effect=["Franklin"])
-    def test_playerChoiceChangeName(self, fake_input):
+    def test_player_choice_change_name(self, fake_input):
         """Test the player_choice function with the input of changename."""
         self.assertTrue(self.game.player_choice(self.player1, "changename"))
 
-    def test_playerChoiceCommands(self):
+    def test_player_choice_commands(self):
         """Test the player_choice function with the input of commands."""
         self.assertTrue(self.game.player_choice(self.player1, "commands"))
 
     # An input is needed for the test
     @patch("builtins.input", side_effect=["hold", "cheat"])
-    def test_finishGamePVP(self, fake_input):
+    def test_finish_game_pvp(self, fake_input):
         """Test the player_vs_player function and attempt to finish a round."""
-        self.assertTrue(True, self.game.player_versus_player(self.players))
+        self.assertTrue(self.game.player_versus_player(self.players))
 
     # An input is needed for the test
     @patch("builtins.input", side_effect=["cheat"])
-    def test_finishGamePVPCheat(self, fake_input):
+    def test_finish_game_pvp_cheat(self, fake_input):
         """Test the PvP gamemode and attempt to finish a round with cheat."""
-        self.assertTrue(True, self.game.player_versus_player(self.players))
+        self.assertTrue(self.game.player_versus_player(self.players))
 
     # An input is needed for the test
     @patch("builtins.input", side_effect=["hold", "cheat"])
-    def test_finishGamePVC(self, fake_input):
+    def test_finish_game_pvc(self, fake_input):
         """Test the player_vs_player function and attempt to finish a round."""
-        self.assertTrue(True, self.game.player_versus_computer(self.players))
+        self.assertTrue(self.game.player_versus_computer(self.players))
 
 
 if __name__ == "__main__":
