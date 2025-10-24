@@ -89,11 +89,11 @@ class TestPlayerClass(unittest.TestCase):
         self.test_player.change_name(new_name)
         # The new name should be Alice
         self.assertEqual(self.test_player.get_name(), new_name)
-        
+
         new_name = "Frank"
         # Change name to Frank
         self.test_player.change_name(new_name)
-        # The new name should be Frank  
+        # The new name should be Frank
         self.assertEqual(self.test_player.get_name(), new_name)
 
         new_name = "Bill"
