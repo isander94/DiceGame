@@ -18,6 +18,8 @@ help:
 	@printf "flake - Perform linting with flake8 on the project\n"
 	@printf "clean - Remove coverage files, cache and html reports\n"
 	@printf "clean-doc - Remove generated documentation\n"
+	@printf "clean-uml - Removes generated UML diagrams\n"
+	@printf "clean-all - Performs a full cleanup with above clean commands\n"
 
 exec:
 	@printf "Using executable: $(PYTHON)\n"
@@ -48,7 +50,12 @@ test:
 	coverage html
 
 # Create UML class diagrams
-
+uml:
+	install -d doc/uml
+	pyreverse src/*.py
+	dot -Tpng classes.dot -o doc/uml/classes.png
+	dot -Tpng packages.dot -o doc/uml/packages.png
+	rm -f classes.dot packages.dot
 
 # Generate documentation about the classes
 docs:
@@ -74,8 +81,14 @@ lint: pylint flake
 clean:
 	rm -f .coverage *.pyc
 	rm -rf __pycache__
+	cd src && rm -rf __pycache__
 	rm -rf htmlcov
 
 # Remove generated documentation
 clean-doc:
 	rm -rf doc/pdoc
+
+clean-uml:
+	rm -rf doc/uml
+
+clean-all: clean clean-doc clean-uml
