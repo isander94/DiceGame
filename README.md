@@ -30,7 +30,8 @@ Clone the repository by typing this in your console in your directory of your ch
 
 # Makefile
 This project uses a makefile to simplify installation and running tests and generating documentation.
-    If you're using Windows you will need to install the Chocolatey package manager from the link below
+If you're using Windows you will need to install the Chocolatey package manager from the link below
+    
     https://chocolatey.org/install
 
 If you're using a Mac or Linux system, makefiles should already work for you.
@@ -51,19 +52,19 @@ Mac/Linux:
 
     . .venv/bin/activate
 
-## Packages
-# Install packages
+# Packages
+## Install packages
 To install required packages from the project into your venv type this:
 
     make install
 
-# View installed packages
+## View installed packages
 
 If you would like to inspect what packages the project is using, simple run the following command:
 
     make installed
 
-## Run tests and get coverage report
+# Run tests and get coverage report
 
 To run the test suite for the project, enter the following command:
 
@@ -73,11 +74,11 @@ This will run the tests for all of the classes and also generate a coverage repo
 The first report can be seen in the terminal after the tests have passed. The second report is an HTML report and is located
 in the htmlcov directory after the tests are finished.
 
-## Documentation
+# Documentation
 This project allows you to easily generate documentation. Both written documentation that shows you the code in the browser
 but also a UML diagram that shows the classes and the packages.
 
-# Generating documentation
+## Generating documentation
 
 To generate documentation that can be seen in the browser, run the following program:
 
@@ -85,7 +86,7 @@ To generate documentation that can be seen in the browser, run the following pro
 
 This will create HTML-files based on the classes of the project and will be located in the doc/pdoc directory.
 
-# Generating UML diagrams
+## Generating UML diagrams
 
 If you'd like to create UML-diagrams instead, run this command:
 
@@ -141,5 +142,3 @@ We can now run the main file:
     python main.py
 
 You will be presented with the main menu and the game will wait for your input.
-
-
