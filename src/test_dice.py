@@ -70,7 +70,7 @@ class TestDiceClass(unittest.TestCase):
     def test_same_low_and_high_returns_constant(self):
         """If low == high, roll() should always return that number."""
         dice = Dice(5, 5)
-        for i in range(10):
+        for _ in range(10):
             self.assertEqual(dice.roll(), 5)
 
     def test_attribute_types(self):
@@ -96,7 +96,7 @@ class TestDiceClass(unittest.TestCase):
 
     def test_multiple_rolls_are_independent(self):
         """Ensure multiple rolls return values within bounds each time."""
-        for i in range(100):
+        for _ in range(100):
             roll = self.my_dice1.roll()
             self.assertTrue(1 <= roll <= 6)
 

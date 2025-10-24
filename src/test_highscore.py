@@ -1,8 +1,8 @@
 """Unittest for highscore."""
 
 import unittest
-from highscore import Highscore
 from unittest.mock import patch
+from highscore import Highscore
 
 
 class TestHighscoreClass(unittest.TestCase):

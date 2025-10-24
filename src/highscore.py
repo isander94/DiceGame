@@ -25,12 +25,14 @@ class Highscore:
 
     def get_every_highscore(self):
         """Return a sorted highscore list in falling order."""
-        return sorted(self.highscores.items(), key=lambda x: x[1], reverse=True)
+        return sorted(self.highscores.items(),
+                      key=lambda x: x[1], reverse=True)
 
     def print_highscores(self):
         """Print the highscores in a fancy list."""
         print("\n¤¤ Highscore List ¤¤")
-        for i, (player, score) in enumerate(self.get_every_highscore(), start=1):
+        for i, (player, score) in enumerate(self.get_every_highscore(),
+                                            start=1):
             print(f"{i}. {player} - {score}")
 
     def save_scores(self):
