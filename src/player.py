@@ -1,4 +1,5 @@
 """Player class that represents a participant in the game."""
+
 from dice import Dice
 
 

@@ -1,4 +1,5 @@
 """Main class for handling gameloop."""
+
 # pylint: disable=unused-argument
 import cmd
 from game import Game
@@ -9,20 +10,22 @@ from highscore import Highscore
 class GameLoop(cmd.Cmd):
     """Main Gameloop."""
 
-    intro = ("|¤¤¤¤| Pig Dice Game |¤¤¤¤|\n" +
-             "{    Option     }{    Command    }\n" +
-             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-             "|$ Singleplayer$||     pvc       |\n" +
-             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-             "|$ Multiplayer $||     pvp       |\n" +
-             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-             "| £ Highscore £ ||   highscore   |\n" +
-             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-             "|   € Rules €   ||     rules     |\n" +
-             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-             "|  :( Quit ):   ||     quit      |\n" +
-             "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n" +
-             "Type 'help' to show commands.\n")
+    intro = (
+        "|¤¤¤¤| Pig Dice Game |¤¤¤¤|\n"
+        + "{    Option     }{    Command    }\n"
+        + "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n"
+        + "|$ Singleplayer$||     pvc       |\n"
+        + "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n"
+        + "|$ Multiplayer $||     pvp       |\n"
+        + "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n"
+        + "| £ Highscore £ ||   highscore   |\n"
+        + "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n"
+        + "|   € Rules €   ||     rules     |\n"
+        + "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤||¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n"
+        + "|  :( Quit ):   ||     quit      |\n"
+        + "|¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|\n"
+        + "Type 'help' to show commands.\n"
+    )
     prompt = "--> "
 
     def do_menu(self, arg):
@@ -49,12 +52,16 @@ class GameLoop(cmd.Cmd):
         while valid_input is False:
             try:
 
-                difficulty = int(input("Choose difficulty\n" +
-                                       "1) Normal\n" +
-                                       "2) Medium\n" +
-                                       "3) Hard\n" +
-                                       "4) Very hard!\n" +
-                                       "---> "))
+                difficulty = int(
+                    input(
+                        "Choose difficulty\n"
+                        + "1) Normal\n"
+                        + "2) Medium\n"
+                        + "3) Hard\n"
+                        + "4) Very hard!\n"
+                        + "---> "
+                    )
+                )
 
                 if difficulty == 1:
                     cpu_high = 6
@@ -117,12 +124,13 @@ class GameLoop(cmd.Cmd):
 
               This goes on until someone reaches 100 points first
 
-              Good luck!""")
+              Good luck!"""
+        )
 
     def do_quit(self, line):
         """Quit the program."""
         return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     GameLoop().cmdloop()

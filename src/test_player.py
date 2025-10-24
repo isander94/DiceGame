@@ -1,4 +1,5 @@
 """Test class for the player class."""
+
 import unittest
 from player import Player
 

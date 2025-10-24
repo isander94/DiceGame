@@ -1,4 +1,5 @@
 """Class representing a die that can be rolled."""
+
 # pylint: disable=too-few-public-methods
 import random
 

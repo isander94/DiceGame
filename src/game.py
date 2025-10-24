@@ -1,4 +1,5 @@
 """Class for handling all game modes."""
+
 # pylint: disable=attribute-defined-outside-init
 # pylint: disable=too-many-return-statements
 import random

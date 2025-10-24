@@ -104,7 +104,7 @@ class TestHighscoreClass(unittest.TestCase):
         new_test_highscore = Highscore(filename=self.test_file)
         self.assertEqual(new_test_highscore.get_highscore("Örjan#1"), 45)
 
-    @patch('builtins.print')
+    @patch("builtins.print")
     def test_print_highscore_list(self, mock_print):
         """Test if printing highscores gives a fancy list."""
         self.test_highscore.add_score("Adam", 80)
@@ -117,11 +117,12 @@ class TestHighscoreClass(unittest.TestCase):
             unittest.mock.call("\n¤¤ Highscore List ¤¤"),
             unittest.mock.call("1. Caesar - 85"),
             unittest.mock.call("2. Adam - 80"),
-            unittest.mock.call("3. Bertil - 50")]
+            unittest.mock.call("3. Bertil - 50"),
+        ]
 
         mock_print.assert_has_calls(expected_output, any_order=False)
 
-    @patch('builtins.print')
+    @patch("builtins.print")
     def test_print_empty_highscore_list(self, mock_print):
         """Test that empty highscore list only prints the header."""
         self.test_highscore.print_highscores()

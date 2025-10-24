@@ -1,4 +1,5 @@
 """Unit testing for dice class."""
+
 import unittest
 
 from dice import Dice

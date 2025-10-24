@@ -1,4 +1,5 @@
 """Test class for the Game class."""
+
 # pylint: disable=unused-argument
 import unittest
 from unittest.mock import patch
